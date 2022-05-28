@@ -18,14 +18,70 @@ import React from 'react';
 //import classNames from 'classnames';
 // import PropTypes from 'prop-types';
 
-function index() {
+// Component
+import CustomInput from '../base/baseInput/CustomInput';
+
+// styles
+import styles from './styles/Form-Login.module.scss';
+
+function Index() {
+	const [valueName, setValueName] = React.useState('');
+
+	const [valueEmail, setValueEmail] = React.useState('');
+
+	const [valuePassword, setValuePassword] = React.useState('');
+
+	const [valueConfirmPassword, setValueConfirmPassword] = React.useState('');
+
+	const onSubmitForm = (event) => {
+
+		event.preventDefault();
+	};
+
     return(
-        <div>Chu</div>
+        <div className={styles['form-login']}>
+	        <form className={styles.form} onSubmit={onSubmitForm}>
+		        <CustomInput
+			        typeLabel='Tên đầy đủ'
+			        keys='KEY_NAME'
+			        type='text'
+			        placeholder='VD: Đậu Xuân Quân'
+			        valueInput={valueName}
+			        setValueInput={setValueName}
+		        />
+		        <CustomInput
+			        typeLabel='Email'
+			        keys='KEY_EMAIL'
+			        type='text'
+			        placeholder='VD: email@domain.com'
+			        valueInput={valueEmail}
+			        setValueInput={setValueEmail}
+		        />
+		        <CustomInput
+			        typeLabel='Mật khẩu'
+			        keys='KEY_PASSWORD'
+			        type='text'
+			        placeholder='Nhập mật khẩu'
+			        valueInput={valuePassword}
+			        setValueInput={setValuePassword}
+		        />
+		        <CustomInput
+			        typeLabel='Nhập lại mật khẩu'
+			        keys='KEY_CONFIRM_PASSWORD'
+			        type='text'
+			        placeholder='Nhập lại mật khẩu'
+			        valueInput={valueConfirmPassword}
+			        valuePassword={valuePassword}
+			        setValueInput={setValueConfirmPassword}
+		        />
+		        <button className={styles['form-submit']}>Đăng nhập</button>
+	        </form>
+        </div>
     );
 }
 
-index.propTypes = {};
+// index.propTypes = {};
+//
+// index.defaultProps = {};
 
-index.defaultProps = {};
-
-export default index;
+export default Index;

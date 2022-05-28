@@ -5,6 +5,7 @@
 .form-group {
     display: flex;
     flex-direction: column;
+    padding-bottom: 16px;
     .form-label,
     .form-message {
         text-align: left;
@@ -34,8 +35,10 @@
     }
 
     // error
-    //.invalid {
-    //    border-color: var(--color-mesage);
-    //    color: var(--color-mesage);
-    //}
+    .invalid {
+        border-color: var(--color-mesage);
+    }
+    .invalid-message {
+        color: var(--color-mesage);
+    }
 }
