@@ -39,6 +39,7 @@ function CustomInput(props) {
 		placeholder,
 		setValueInput,
 		valuePassword,
+		statusValida,
 	} = props;
 
 	const [messageError, setMessageError] = React.useState('');
@@ -138,6 +139,12 @@ function CustomInput(props) {
 		setStatusError(statusValidaConfirmPassword);
 	};
 
+	React.useEffect(() => {
+		if(!statusValida) {
+			onBlurInput();
+		}
+	}, [statusValida]);
+
 	const onBlurInput = () => {
 		switch (keys) {
 			case baseType.keyName:
@@ -197,9 +204,11 @@ CustomInput.propTypes = {
 	placeholder: PropTypes.string,
 	valuePassword: PropTypes.string,
 	setValueInput: PropTypes.func,
+	statusValida: PropTypes.bool,
 };
 
 CustomInput.defaultProps = {
+	statusValida: true,
 	type: 'text',
 	keys: 'KEY_NAME',
 	placeholder: 'Vui lòng nhập',

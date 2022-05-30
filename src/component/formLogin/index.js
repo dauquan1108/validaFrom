@@ -33,8 +33,15 @@ function Index() {
 
 	const [valueConfirmPassword, setValueConfirmPassword] = React.useState('');
 
-	const onSubmitForm = (event) => {
+	// const value = React.useRef(true);
+	const [statusValida, setStatusValida] = React.useState(true);
 
+	const onSubmitForm = (event) => {
+		setStatusValida(!statusValida);
+		if(valueName && valueEmail && valuePassword && valueConfirmPassword && valuePassword === valueConfirmPassword) {
+			console.log('Đăng nhập thành công: ================>', 'Đăng nhập thành công'); // Log QuanDX fix bug
+		}
+		console.log('123: ======= Chưa có được đăng nhập =========>', 123); // Log QuanDX fix bug
 		event.preventDefault();
 	};
 
@@ -48,6 +55,7 @@ function Index() {
 			        placeholder='VD: Đậu Xuân Quân'
 			        valueInput={valueName}
 			        setValueInput={setValueName}
+			        statusValida={statusValida}
 		        />
 		        <CustomInput
 			        typeLabel='Email'
@@ -56,6 +64,7 @@ function Index() {
 			        placeholder='VD: email@domain.com'
 			        valueInput={valueEmail}
 			        setValueInput={setValueEmail}
+			        statusValida={statusValida}
 		        />
 		        <CustomInput
 			        typeLabel='Mật khẩu'
@@ -64,6 +73,7 @@ function Index() {
 			        placeholder='Nhập mật khẩu'
 			        valueInput={valuePassword}
 			        setValueInput={setValuePassword}
+			        statusValida={statusValida}
 		        />
 		        <CustomInput
 			        typeLabel='Nhập lại mật khẩu'
@@ -73,6 +83,7 @@ function Index() {
 			        valueInput={valueConfirmPassword}
 			        valuePassword={valuePassword}
 			        setValueInput={setValueConfirmPassword}
+			        statusValida={statusValida}
 		        />
 		        <button className={styles['form-submit']}>Đăng nhập</button>
 	        </form>
