@@ -31,3 +31,49 @@
         }
     }
 }
+
+// test
+:root {
+    --color-mesage: #f33a58
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+    .form-label,
+    .form-message {
+        text-align: left;
+    }
+    .form-label {
+        font-weight: 700;
+        padding-bottom: 6px;
+        line-height: 1.8rem;
+        font-size: 1.4rem;
+    }
+    .form-control {
+        height: 40px;
+        padding: 8px 12px;
+        border: 1px solid #b3b3b3;
+        border-radius: 3px;
+        outline: none;
+        font-size: 1.4rem;
+    }
+    .form-control:hover {
+        border-color: #1dbfaf;
+    }
+
+    .form-message {
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        padding: 4px 0 0;
+    }
+
+    // error
+    .invalid {
+        border-color: var(--color-mesage);
+    }
+    .invalid-message {
+        color: var(--color-mesage);
+    }
+}
