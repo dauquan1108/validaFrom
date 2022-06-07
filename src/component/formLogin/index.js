@@ -15,7 +15,6 @@
 'use strict';
 
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
 
 // Component
 import CustomInput from '../base/baseInput/CustomInput';
@@ -27,7 +26,7 @@ import styles from './styles/Form-Login.module.scss';
 import { isValidaInputName, isValidaPassword, isValidateInputEmail } from '../base/baseValidation/validations';
 
 function Index() {
-	const initialValues = {username: '', email: '', password: '', confirmPassword: ''};
+	const initialValues = { username: '', email: '', password: '', confirmPassword: '' };
 	const [formValues , setFormValues] = React.useState(initialValues);
 	const [messageError, setMessageError] = React.useState(initialValues);
 	const [isSubmit, setIsSubmit] = useState(false);
@@ -127,13 +126,11 @@ function Index() {
 		return messageError;
 	};
 
-	const onBlurInput = (event) => {
-		const { name } = event.target;
+	const onBlurInput = (name) => {
 		setMessageError({...messageError, [name]: checkInput(name)});
 	};
 
-	const onChangeInput = (event) => {
-		const { name, value } = event.target;
+	const onChangeInput = (name, value) => {
 		setIsSubmit(false);
 		setFormValues({...formValues, [name]: value})
 		setMessageError({...messageError, [name]: checkInput(name, 'onChange')});
@@ -158,82 +155,36 @@ function Index() {
 					onChangeInputs={onChangeInput}
 					onBlurInputs={onBlurInput}
 				/>
-				{/*<div className={styles['form-group']}>*/}
-				{/*	<label className={styles['form-label']}>Tên đầy đủ</label>*/}
-				{/*	<input*/}
-				{/*		onChange={onChangeInput}*/}
-				{/*		onBlur={onBlurInput}*/}
-				{/*		name='username'*/}
-				{/*		type='text'*/}
-				{/*		value={formValues?.username}*/}
-				{/*		placeholder='VD: Đậu Xuân Quân'*/}
-				{/*		className={classNames(styles['form-control'], messageError?.username && styles.invalid)}*/}
-				{/*	/>*/}
-				{/*	{*/}
-				{/*		messageError?.username && (*/}
-				{/*			<span className={classNames(styles['form-message'], styles['invalid-message'])}>*/}
-				{/*                {messageError.username}*/}
-			    {/*            </span>*/}
-				{/*		)*/}
-				{/*	}*/}
-				{/*</div>*/}
-				{/*<div className={styles['form-group']}>*/}
-				{/*	<label className={styles['form-label']}>Email</label>*/}
-				{/*	<input*/}
-				{/*		onChange={onChangeInput}*/}
-				{/*		onBlur={onBlurInput}*/}
-				{/*		name='email'*/}
-				{/*		type='text'*/}
-				{/*		value={formValues?.email}*/}
-				{/*		placeholder='VD: email@domain.com'*/}
-				{/*		className={classNames(styles['form-control'], messageError?.email && styles.invalid)}*/}
-				{/*	/>*/}
-				{/*	{*/}
-				{/*		messageError?.email && (*/}
-				{/*			<span className={classNames(styles['form-message'], styles['invalid-message'])}>*/}
-				{/*                {messageError.email}*/}
-			    {/*            </span>*/}
-				{/*		)*/}
-				{/*	}*/}
-				{/*</div>*/}
-				{/*<div className={styles['form-group']}>*/}
-				{/*	<label className={styles['form-label']}>Mật khẩu</label>*/}
-				{/*	<input*/}
-				{/*		onChange={onChangeInput}*/}
-				{/*		onBlur={onBlurInput}*/}
-				{/*		name='password'*/}
-				{/*		type='text'*/}
-				{/*		value={formValues?.password}*/}
-				{/*		placeholder='Nhập mật khẩu'*/}
-				{/*		className={classNames(styles['form-control'], messageError?.password && styles.invalid)}*/}
-				{/*	/>*/}
-				{/*	{*/}
-				{/*		messageError?.password && (*/}
-				{/*			<span className={classNames(styles['form-message'], styles['invalid-message'])}>*/}
-				{/*                {messageError.password}*/}
-			    {/*            </span>*/}
-				{/*		)*/}
-				{/*	}*/}
-				{/*</div>*/}
-				{/*<div className={styles['form-group']}>*/}
-				{/*	<label className={styles['form-label']}>Nhập lại mật khẩu</label>*/}
-				{/*	<input*/}
-				{/*		onChange={onChangeInput}*/}
-				{/*		onBlur={onBlurInput}*/}
-				{/*		name='confirmPassword'*/}
-				{/*		type='text'*/}
-				{/*		value={formValues?.confirmPassword}*/}
-				{/*		placeholder='Nhập lại mật khẩu'*/}
-				{/*		className={classNames(styles['form-control'], messageError?.confirmPassword && styles.invalid)}*/}
-				{/*	/>*/}
-				{/*	{*/}
-				{/*		messageError?.confirmPassword && (*/}
-				{/*			<span className={classNames(styles['form-message'], styles['invalid-message'])}>*/}
-				{/*                {messageError.confirmPassword}*/}
-			    {/*            </span>*/}
-				{/*		)*/}
-				{/*	}*/}
-				{/*</div>*/}
+				<CustomInput
+					types='text'
+					names='email'
+					typeLabels='Email'
+					valueInputs={formValues?.email}
+					placeholders='VD: email@domain.com'
+					messageErrors={messageError}
+					onChangeInputs={onChangeInput}
+					onBlurInputs={onBlurInput}
+				/>
+				<CustomInput
+					types='text'
+					names='password'
+					typeLabels='Mật khẩu'
+					valueInputs={formValues?.password}
+					placeholders='Nhập mật khẩu'
+					messageErrors={messageError}
+					onChangeInputs={onChangeInput}
+					onBlurInputs={onBlurInput}
+				/>
+				<CustomInput
+					types='text'
+					names='confirmPassword'
+					typeLabels='Nhập lại mật khẩu'
+					valueInputs={formValues?.confirmPassword}
+					placeholders='Nhập lại mật khẩu'
+					messageErrors={messageError}
+					onChangeInputs={onChangeInput}
+					onBlurInputs={onBlurInput}
+				/>
 				<button className={styles['form-submit']}>Đăng nhập</button>
 			</form>
 		</div>

@@ -18,14 +18,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-// base
-import baseType from '../baseType/Type';
-import {
-	isValidaPassword,
-	isValidaInputName,
-	isValidateInputEmail,
-} from '../baseValidation/validations';
-
 // styles
 import styles from './styles/CustomInput.module.scss';
 
@@ -37,9 +29,9 @@ function CustomInput(props) {
 		typeLabels,
 		valueInputs,
 		placeholders,
+		onBlurInputs,
 		messageErrors,
-		onChangeInputs,
-		onBlurInputs
+		onChangeInputs
 	} = props;
 
 	const onChangeInput = (event) => {
@@ -48,8 +40,8 @@ function CustomInput(props) {
 	};
 
 	const onBlurInput = (event) => {
-		const { name, value } = event.target;
-		onBlurInputs(name, value);
+		const { name } = event.target;
+		onBlurInputs(name);
 	};
 
 	return(
@@ -68,12 +60,12 @@ function CustomInput(props) {
 				type={types}
 				value={valueInputs}
 				placeholder={placeholders}
-				className={classNames(styles['form-control'], messageErrors?.names && styles.invalid)}
+				className={classNames(styles['form-control'], messageErrors?.[names] && styles.invalid)}
 			/>
 			{
-				messageErrors?.names && (
+				messageErrors?.[names] && (
 					<span className={classNames(styles['form-message'], styles['invalid-message'])}>
-						{messageErrors?.names}
+						{messageErrors?.[names]}
 					</span>
 				)
 			}
